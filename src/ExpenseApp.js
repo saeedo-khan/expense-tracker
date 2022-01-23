@@ -74,18 +74,18 @@ const useStyles = makeStyles({
 })
 
 function ExpenseApp() {
-    const expenses = useSelector(state => state)
+    const expenses = useSelector((state) => state.expenses)
     const classes = useStyles()
 
     const income = expenses.map(expense => expense.amount)
                     .filter(expense => expense > 0)
-                    .reduce((a,b) => a+b);
+                    .reduce((a,b) => a+b, 0);
     
     const expensTotal = expenses.map(expense => expense.amount)
                         .filter(expense => expense < 0)
-                        .reduce((a,b) => a+b);
+                        .reduce((a,b) => a+b, 0);
 
-    const balance = expenses.map(expense => expense.amount).reduce((a,b) => a+b)
+    const balance = expenses.map(expense => expense.amount).reduce((a,b) => a+b, 0)
 
 
     return (
@@ -128,7 +128,7 @@ function ExpenseApp() {
                 
                 <Box className={classes.expense}>
                     <Paper style={{padding: '1rem', position: 'relative'}}>
-                        <Typography className={classes.titleExpense} variant='h5'>Expense</Typography>
+                        <Typography className={classes.titleExpense} variant='h5'>Expenses</Typography>
                         <Typography variant='h5'>{expensTotal}</Typography>
                         <Box sx={{
                             height: '10%',
@@ -149,6 +149,9 @@ function ExpenseApp() {
                 <Divider fullWidth/>
             </Box>
 
+            {!expenses.length && <Typography varint='h6' component='h3'>Nothing to Display</Typography>}
+            
+            
             <Box sx={{
                 width: '80%',
                 height: '300px',

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Button, TextField } from '@material-ui/core'
 import { useDispatch } from 'react-redux';
-import { addExpense } from '../redux/action';
+import { addExpense } from '../features/expensesSlice';
 import { v4 as uuidv4 } from 'uuid'
 
 function FormExpense() {

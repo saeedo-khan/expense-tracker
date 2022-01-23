@@ -3,7 +3,7 @@ import { ListItem, Typography, Box, IconButton} from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteSweepIcon from '@material-ui/icons/DeleteSweep';
 import { useDispatch } from 'react-redux'
-import { deleteExpense } from '../redux/action';
+import { deleteExpense } from '../features/expensesSlice';
 import FormUpdate from './FormUpdate';
 import { motion } from 'framer-motion/dist/framer-motion';
 
@@ -21,7 +21,6 @@ function MiniExpense({ expense }) {
         {isEdit ? <FormUpdate changeIsEdit={setIsEdit} id={expense.id}/> :
             <ListItem
                 button
-                marginY={1}
             >
                 <Typography>{expense.name}</Typography>
                 <Box sx={{
@@ -38,7 +37,7 @@ function MiniExpense({ expense }) {
                     <IconButton onClick={handleEditing}>
                         <EditIcon />
                     </IconButton>
-                    <IconButton onClick={() => dispatch(deleteExpense(expense.id))}>
+                    <IconButton onClick={() => dispatch(deleteExpense(expense))}>
                         <DeleteSweepIcon />
                     </IconButton>
                 </Box>

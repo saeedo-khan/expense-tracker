@@ -1,4 +1,8 @@
-import { createStore } from "redux";
-import { reducer } from "./reducer";
+import { configureStore } from "@reduxjs/toolkit";
+import expensesReducer from "../features/expensesSlice";
 
-export const store = createStore(reducer)
+export default configureStore({
+    reducer: {
+        expenses: expensesReducer
+    }
+})
