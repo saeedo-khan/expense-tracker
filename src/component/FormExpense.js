@@ -19,7 +19,7 @@ function FormExpense() {
             }));
             setName('');
             setAmount('')
-        }else{
+        }else{ 
             alert('you have to fill blank')
         }
     }
