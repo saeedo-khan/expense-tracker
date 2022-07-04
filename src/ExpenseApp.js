@@ -1,77 +1,78 @@
 import React from 'react'
-import { Box, Container, Divider, List, Paper, Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/styles'
+import { Box, Container, Divider, List, Paper, Typography, makeStyles, createStyles } from '@material-ui/core'
 import FormExpense from './component/FormExpense'
 import MiniExpense from './component/MiniExpense'
 import { useSelector } from 'react-redux';
 import { motion, AnimatePresence } from 'framer-motion/dist/framer-motion';
 
-const useStyles = makeStyles({
-    Boxcontainer:{
-        maxWidth: '700px',
-        display: 'flex',
-        justifyContent: 'start-flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        margin: '0 auto'
-    },
-    title:{
-        padding: '1rem',
-        width: '80%',
-        textAlign:' center'
-    },
-    wrapExp:{
-        display: 'flex',
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        margin: '2% 0',
-        padding: '1rem',
-        ['@media (max-width: 400px)']:{
+const useStyles = makeStyles((theme) => 
+    createStyles({
+        Boxcontainer:{
+            maxWidth: '700px',
+            display: 'flex',
+            justifyContent: 'start-flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center'
+            margin: '0 auto'
+        },
+        title:{
+            padding: '1rem',
+            width: '80%',
+            textAlign:' center'
+        },
+        wrapExp:{
+            display: 'flex',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'space-around',
+            margin: '2% 0',
+            padding: '1rem',
+            [theme.breakpoints.down('sm')]:{
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }
+        },
+        titleExpense:{
+            textTransform: 'uppercase',
+        },
+        border:{
+            height: '80px',
+            width: '2px',
+            backgroundColor: 'black',
+            display: 'block',
+            position: 'relative'
+        },
+        income:{
+            width: '40%',
+            textAlign: 'center',
+            [theme.breakpoints.down('sm')]:{
+                margin: '1rem 0',
+                width: '90%'
+            }
+        },
+        expense:{
+            textAlign: 'center',
+            color: 'rgb(234, 54, 44)',
+            width: '40%',
+            [theme.breakpoints.down('sm')]:{
+                width: '90%'
+            }
+        },
+        balance:{
+            width: '80%',
+            padding: '1rem'
+        },
+        line:{
+            width: '8px',
+            height: '100%',
+            backgroundColor: 'rgba(234, 54, 44, 0.9)',
+            display: 'block',
+            position: 'absolute',
+            right: '0'
         }
-    },
-    titleExpense:{
-        textTransform: 'uppercase',
-    },
-    border:{
-        height: '80px',
-        width: '2px',
-        backgroundColor: 'black',
-        display: 'block',
-        position: 'relative'
-    },
-    income:{
-        width: '40%',
-        textAlign: 'center',
-        ['@media (max-width: 400px)']:{
-            margin: '1rem 0',
-            width: '90%'
-        }
-    },
-    expense:{
-        textAlign: 'center',
-        color: 'rgb(234, 54, 44)',
-        width: '40%',
-        ['@media (max-width: 400px)']:{
-            width: '90%'
-        }
-    },
-    balance:{
-        width: '80%',
-        padding: '1rem'
-    },
-    line:{
-        width: '8px',
-        height: '100%',
-        backgroundColor: 'rgba(234, 54, 44, 0.9)',
-        display: 'block',
-        position: 'absolute',
-        right: '0'
-    }
-})
+    })
+)
 
 function ExpenseApp() {
     const expenses = useSelector((state) => state.expenses)
