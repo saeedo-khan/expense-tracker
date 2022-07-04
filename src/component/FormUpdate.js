@@ -1,7 +1,7 @@
 import { Button, TextField } from '@material-ui/core'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { updateExpense } from '../redux/action'
+import { updateExpense } from '../features/expensesSlice'
 
 function FormUpdate({changeIsEdit,id}) {
     const [nameUpdate, setNameUpdate] = useState('')
@@ -13,15 +13,21 @@ function FormUpdate({changeIsEdit,id}) {
 
         if(nameUpdate && amountUpdate){ 
             dispatch(updateExpense({ id:id, name: nameUpdate, amount: +amountUpdate }))
-            console.log('updated value')
         }
         
         changeIsEdit(false)
     }
 
+    const handleSubmit = e => {
+        e.preventDefault()
+
+        if(e.keyCode === 13) handleUpdate()
+    }
+
     return (
         <form 
-        onSubmit={e => e.preventDefault()}
+        onSubmit={handleSubmit}
+        onKeyUp={handleSubmit}
         style={{
             display: 'flex',
             alignItems: 'center',
